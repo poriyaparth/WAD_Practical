@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User List</title>
+</head>
+<body>
+
+    <h2>Registered Users</h2>
+
+    <table border="1" cellpadding="10">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <!-- <th>Password</th> -->
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody id="tableBody">
+
+        </tbody>
+    </table>
+
+<script>
+
+let users = JSON.parse(localStorage.getItem("users")) || [];
+
+function displayUsers() {
+
+    let tableBody = document.getElementById("tableBody");
+
+    tableBody.innerHTML = "";
+
+    users.forEach(function(user, index){
+
+        let row = `
+            <tr>
+                <td>${user.name}</td>
+                <td>${user.email}</td>
+                <!-- <td>${user.password}</td> -->
+
+                <td>
+                    <button onclick="editUser(${index})">
+                        Edit
+                    </button>
+                    <button onclick="deleteUser(${index})">
+                        Delete
+                    </button>
+                </td>
+            </tr>
+        `;
+
+        tableBody.innerHTML += row;
+
+    });
+}
+
+function deleteUser(index){
+
+    // Remove user from array
+    users.splice(index, 1);
+
+    // Update local storage
+    localStorage.setItem("users", JSON.stringify(users));
+
+    // Refresh table
+    displayUsers();
+}
+
+function editUser(index) {
+    let user = users[index];
+
+    let newName = prompt("Enter new name", user.name);
+    if (newName === null) {
+        return;
+    }
+
+    let newEmail = prompt("Enter new email", user.email);
+    if (newEmail === null) {
+        return;
+    }
+
+    let newPassword = prompt("Enter new password", user.password);
+    if (newPassword === null) {
+        return;
+    }
+
+    users[index] = {
+        name: newName,
+        email: newEmail,
+        password: newPassword
+    };
+
+    localStorage.setItem("users", JSON.stringify(users));
+
+    displayUsers();
+}
+
+// Display users when page loads
+displayUsers();
+
+</script>
+
+</body>
+</html>
