@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>College Dashboard</title>
+
+    <style>
+
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body{
+            background-color: #f1f5f9;
+        }
+
+        /* Main Layout */
+
+        .container{
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+
+        .sidebar{
+            width: 250px;
+            background-color: #1e293b;
+            color: white;
+            padding: 20px;
+        }
+
+        .sidebar h2{
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .sidebar ul{
+            list-style: none;
+        }
+
+        .sidebar ul li{
+            padding: 15px;
+            margin-bottom: 10px;
+            background-color: #334155;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .sidebar ul li:hover{
+            background-color: #475569;
+        }
+
+        /* Main Content */
+
+        .main{
+            flex: 1;
+            padding: 20px;
+        }
+
+        /* Header */
+
+        .header{
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header button{
+            padding: 10px 20px;
+            border: none;
+            background-color: #2563eb;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Cards */
+
+        .cards{
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .card{
+            flex: 1;
+            min-width: 200px;
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+        }
+
+        .card1{
+            background-color: #2563eb;
+        }
+
+        .card2{
+            background-color: #16a34a;
+        }
+
+        .card3{
+            background-color: #dc2626;
+        }
+
+        .card4{
+            background-color: #ca8a04;
+        }
+
+        .card h2{
+            margin-bottom: 10px;
+        }
+
+        /* Table */
+
+        table{
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        table th{
+            background-color: #1e293b;
+            color: white;
+            padding: 15px;
+        }
+
+        table td{
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        /* Responsive Design */
+
+        @media(max-width:768px){
+
+            .container{
+                flex-direction: column;
+            }
+
+            .sidebar{
+                width: 100%;
+            }
+
+            .cards{
+                flex-direction: column;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Sidebar -->
+
+        <div class="sidebar">
+
+            <h2>Dashboard</h2>
+
+            <ul>
+                <li>Home</li>
+                <li>Students</li>
+                <li>Courses</li>
+                <li>Exams</li>
+                <li>Settings</li>
+            </ul>
+
+        </div>
+
+        <!-- Main Content -->
+
+        <div class="main">
+
+            <!-- Header -->
+
+            <div class="header">
+
+                <h1>College Admin Dashboard</h1>
+
+                <button>Login</button>
+
+            </div>
+
+            <!-- Cards -->
+
+            <div class="cards">
+
+                <div class="card card1">
+                    <h2>1200</h2>
+                    <p>Total Students</p>
+                </div>
+
+                <div class="card card2">
+                    <h2>80</h2>
+                    <p>Total Faculty</p>
+                </div>
+
+                <div class="card card3">
+                    <h2>25</h2>
+                    <p>Departments</p>
+                </div>
+
+                <div class="card card4">
+                    <h2>300</h2>
+                    <p>Exams Conducted</p>
+                </div>
+
+            </div>
+
+            <!-- Table -->
+
+            <table>
+
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Course</th>
+                    <th>Status</th>
+                </tr>
+
+                <tr>
+                    <td>101</td>
+                    <td>Rahul</td>
+                    <td>BCA</td>
+                    <td>Active</td>
+                </tr>
+
+                <tr>
+                    <td>102</td>
+                    <td>Priya</td>
+                    <td>MCA</td>
+                    <td>Active</td>
+                </tr>
+
+                <tr>
+                    <td>103</td>
+                    <td>Amit</td>
+                    <td>BTech</td>
+                    <td>Inactive</td>
+                </tr>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
