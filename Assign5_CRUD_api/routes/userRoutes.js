@@ -5,40 +5,73 @@ const User = require("../models/User");
 
 
 // CREATE
-router.post("/addUser", async (req, res) => {
+router.post("/", async (req, res) => {
+    try {
+        const user = new User(req.body);
 
-    const user = new User(req.body);
+        const savedUser = await user.save();
 
-    await user.save();
+        res.status(201).json(savedUser);
 
-    res.send("User Added");
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 });
 
 
-// READ
-router.get("/getUsers", async (req, res) => {
+// READ ALL
+router.get("/", async (req, res) => {
+    try {
+        const users = await User.find();
 
-    const users = await User.find();
+        res.json(users);
 
-    res.json(users);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
+
+// READ SINGLE
+router.get("/:id", async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id);
+
+        res.json(user);
+
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 });
 
 
 // UPDATE
-router.put("/updateUser/:id", async (req, res) => {
+router.put("/:id", async (req, res) => {
+    try {
+        const updatedUser = await User.findByIdAndUpdate(
+            req.params.id,
+            req.body,
+            { new: true }
+        );
 
-    await User.findByIdAndUpdate(req.params.id, req.body);
+        res.json(updatedUser);
 
-    res.send("User Updated");
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 });
 
 
 // DELETE
-router.delete("/deleteUser/:id", async (req, res) => {
+router.delete("/:id", async (req, res) => {
+    try {
+        await User.findByIdAndDelete(req.params.id);
 
-    await User.findByIdAndDelete(req.params.id);
+        res.json({ message: "User deleted successfully" });
 
-    res.send("User Deleted");
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 });
 
 module.exports = router;
